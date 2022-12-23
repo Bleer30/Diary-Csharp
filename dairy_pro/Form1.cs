@@ -67,13 +67,23 @@ namespace dairy_pro
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //--------------
+            dairy_pro.My_Forms.login_form lg_form = new My_Forms.login_form();
+            lg_form.ShowDialog();
+            //--------------
             get_time();
             //--------------
             get_cal();
             //--------------
-            back_image_loader(3);
+            back_image_loader(4);
             //--------------
             background_combo_loader();
+            //--------------
+            Int32 sm;
+            sm = dairy_pro.Properties.Settings.Default.select_music_index;
+            //this.comboBox2.SelectedIndex = sm;
+            //--------------
+            music_combo_loader();
             //--------------
             this.label7.Text = Application.ProductVersion.ToString();
         }
@@ -150,12 +160,22 @@ namespace dairy_pro
         {
             Int32 i;
 
-            for ( i = 1; i <= 4; i++)
+            for ( i = 1; i <= 5; i++)
             {
                 this.comboBox1.Items.Add("Image " + i.ToString());
             }
         }
-        
+
+        public void music_combo_loader()
+        {
+            Int32 i;
+
+            for (i = 1; i <= 2; i++)
+            {
+                this.comboBox2.Items.Add("Music " + i.ToString());
+            }
+        }
+
         public void back_image_loader(Int32 combo_index)
         {
             string fn;
@@ -185,6 +205,45 @@ namespace dairy_pro
             Int32 si;
             si = this.comboBox1.SelectedIndex;
             back_image_loader(si);
+        }
+
+        public void music_loader(Int32 combo_index)
+        {
+            string fn;
+            combo_index = combo_index + 1;
+            fn = Application.StartupPath + "\\data\\music\\" + combo_index.ToString() + ".mp3";
+            this.axWindowsMediaPlayer1.URL= fn;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            music_loader(this.comboBox2.SelectedIndex);
+            dairy_pro.Properties.Settings.Default.select_music_index = this.comboBox2.SelectedIndex;
+            dairy_pro.Properties.Settings.Default.Save();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //music_loader(this.comboBox2.SelectedIndex);
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dairy_pro.My_Forms.about_us ab_form = new dairy_pro.My_Forms.about_us();
+            ab_form.MdiParent = this;
+            ab_form.Show();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dairy_pro.My_Forms.users_mang us_form = new My_Forms.users_mang();
+            us_form.MdiParent = this;
+            us_form.Show();
         }
     }
 }

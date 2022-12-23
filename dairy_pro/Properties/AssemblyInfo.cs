@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Diary Application")]
 [assembly: AssemblyDescription("Great")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SIM")]
+[assembly: AssemblyCompany("Multidisciplinary International Services")]
 [assembly: AssemblyProduct("dairy_pro")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
