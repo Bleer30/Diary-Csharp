@@ -94,5 +94,17 @@ namespace dairy_pro.Properties {
                 this["User_pass"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int last_memo_id {
+            get {
+                return ((int)(this["last_memo_id"]));
+            }
+            set {
+                this["last_memo_id"] = value;
+            }
+        }
     }
 }

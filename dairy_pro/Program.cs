@@ -16,7 +16,7 @@ namespace dairy_pro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new lock_cm());
         }
     }
 }

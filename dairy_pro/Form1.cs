@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace dairy_pro
 {
-    public partial class Form1 : Form
+    public partial class lock_cm : Form
     {
-        public Form1()
+        public lock_cm()
         {
             InitializeComponent();
         }
@@ -37,12 +37,17 @@ namespace dairy_pro
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-
+            dairy_pro.My_Forms.memo_form mf;
+            mf = new My_Forms.memo_form();
+            mf.MdiParent= this;
+            mf.Show();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-
+            dairy_pro.My_Forms.search_memo sf = new My_Forms.search_memo();
+            sf.MdiParent = this;
+            sf.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -244,6 +249,17 @@ namespace dairy_pro
             dairy_pro.My_Forms.users_mang us_form = new My_Forms.users_mang();
             us_form.MdiParent = this;
             us_form.Show();
+        }
+
+        private void lockScreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dairy_pro.My_Forms.login_form lg_form = new My_Forms.login_form();
+            lg_form.ShowDialog();
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
     }
 }
