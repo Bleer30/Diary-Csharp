@@ -72,25 +72,43 @@ namespace dairy_pro
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //--------------
-            dairy_pro.My_Forms.login_form lg_form = new My_Forms.login_form();
-            lg_form.ShowDialog();
-            //--------------
-            get_time();
-            //--------------
-            get_cal();
-            //--------------
-            back_image_loader(4);
-            //--------------
-            background_combo_loader();
-            //--------------
-            Int32 sm;
-            sm = dairy_pro.Properties.Settings.Default.select_music_index;
-            //this.comboBox2.SelectedIndex = sm;
-            //--------------
-            music_combo_loader();
-            //--------------
-            this.label7.Text = Application.ProductVersion.ToString();
+            try
+            {
+                //--------------
+                dairy_pro.My_Forms.login_form lg_form = new My_Forms.login_form();
+                lg_form.ShowDialog();
+                //--------------
+                get_time();
+                //--------------
+                get_cal();
+                //--------------
+                back_image_loader(4);
+                //--------------
+                background_combo_loader();
+                //--------------
+                Int32 sm;
+                sm = dairy_pro.Properties.Settings.Default.select_music_index;
+                //this.comboBox2.SelectedIndex = sm;
+                //--------------
+                music_combo_loader();
+                //--------------
+                this.label7.Text = Application.ProductVersion.ToString();
+            }
+            catch (Exception ex)
+            {
+                comm_class.my_err_msg(ex.ToString());
+            }
+
+            user_info_loader();
+        }
+
+        public void user_info_loader()
+        {
+            this.label11.Text = dairy_pro.Properties.Settings.Default.User_name;
+
+            string df;
+            df = Application.StartupPath + "\\data\\user_pic\\1.jpg";
+            this.pictureBox1.Load(df);
         }
 
         public void get_cal()
@@ -260,6 +278,35 @@ namespace dairy_pro
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void lock_cm_KeyDown(object sender, KeyEventArgs e)
+        {
+           if (e.KeyCode == Keys.F2)
+           {
+                toolStripButton1_Click(sender, e);
+           }
+           if (e.KeyCode == Keys.F3)
+           {
+                toolStripButton2_Click(sender, e);
+           }
+           if (e.KeyCode == Keys.F4)
+           {
+                this.toolStripButton3.ShowDropDown();
+           }
+           if (e.KeyCode == Keys.F5)
+           {
+                this.toolStripButton4.ShowDropDown();
+            }
+           if (e.KeyCode == Keys.F6)
+           {
+                this.toolStripButton5.ShowDropDown();
+            }
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

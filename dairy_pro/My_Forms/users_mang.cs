@@ -19,11 +19,16 @@ namespace dairy_pro.My_Forms
 
         private void users_mang_Load(object sender, EventArgs e)
         {
+            user_info_loader();
+        }
+
+        public void user_info_loader()
+        {
             this.textBox1.Text = dairy_pro.Properties.Settings.Default.User_name;
             this.textBox2.Text = dairy_pro.Properties.Settings.Default.User_pass;
 
             string df;
-            df = Application.StartupPath + "\\data\\pics\\1.jpg";
+            df = Application.StartupPath + "\\data\\user_pic\\1.jpg";
             this.pictureBox1.Load(df);
         }
 
@@ -43,12 +48,16 @@ namespace dairy_pro.My_Forms
             dairy_pro.Properties.Settings.Default.User_pass = this.textBox2.Text;
             dairy_pro.Properties.Settings.Default.Save();
 
-            string fn;
-            fn = this.openFileDialog1.FileName;
-            //-------------------------------------------------------
-            string df;
-            df = Application.StartupPath + "\\data\\pics\\1.jpg";
-            System.IO.File.Copy(fn, df, true);
+            if(this.openFileDialog1.FileName != "openFileDialog1")
+            {
+                string fn;
+                fn = this.openFileDialog1.FileName;
+                //-------------------------------------------------------
+                string df;
+                df = Application.StartupPath + "\\data\\user_pic\\1.jpg";
+                System.IO.File.Copy(fn, df, true);
+            }
+
             MessageBox.Show("Done!");
         }
 

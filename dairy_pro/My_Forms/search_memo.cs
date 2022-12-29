@@ -41,7 +41,7 @@ namespace dairy_pro.My_Forms
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string fn;
-            string fn_title;
+            string fn_title; 
             string fn_date;
             Int32 last_id;
             Int32.TryParse(this.listBox1.Text,out last_id);
@@ -52,6 +52,22 @@ namespace dairy_pro.My_Forms
 
             this.richTextBox1.LoadFile(fn);
             this.textBox1.Text = System.IO.File.ReadAllText(fn_title, Encoding.UTF8);
+            this.textBox2.Text = System.IO.File.ReadAllText(fn_date, Encoding.UTF8);
+            this.textBox3.Text = last_id.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 i;
+                i = this.listBox1.FindStringExact(this.textBox4.Text);
+                this.listBox1.SelectedIndex = i;
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Error: " + ex.ToString()); 
+            }
         }
     }
 }

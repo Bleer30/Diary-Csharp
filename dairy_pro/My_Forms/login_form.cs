@@ -25,7 +25,14 @@ namespace dairy_pro.My_Forms
 
         private void login_form_Load(object sender, EventArgs e)
         {
-            user_info_loader();
+            try
+            {
+                user_info_loader();
+            }
+            catch (Exception ex)
+            {
+                comm_class.my_err_msg(ex.ToString());
+            }
         }
 
         public void user_info_loader()
@@ -39,20 +46,28 @@ namespace dairy_pro.My_Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.textBox2.Text == "")
+            try
             {
-                MessageBox.Show("User Name is empty!!!");
-                return;
-            }
+                if (this.textBox2.Text == "")
+                {
+                    MessageBox.Show("User Name is empty!!!");
+                    return;
+                }
 
-            if (this.textBox2.Text == dairy_pro.Properties.Settings.Default.User_pass)
-            {
-                this.Close();
+                if (this.textBox2.Text == dairy_pro.Properties.Settings.Default.User_pass)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Your password is not correct. Please try again!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Your password is not correct. Please try again!");
+                comm_class.my_err_msg(ex.ToString());
             }
+            
         }
     }
 }

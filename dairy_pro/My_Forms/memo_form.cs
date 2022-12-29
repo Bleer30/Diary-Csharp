@@ -110,29 +110,36 @@ namespace dairy_pro.My_Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.groupBox1.Enabled = false;
-            this.button2.Enabled = false;
-            this.button1.Enabled = true;
+            try
+            {
+                this.groupBox1.Enabled = false;
+                this.button2.Enabled = false;
+                this.button1.Enabled = true;
 
-            Int32 last_id;
-            last_id = dairy_pro.Properties.Settings.Default.last_memo_id;
-            last_id = last_id + 1;
+                Int32 last_id;
+                last_id = dairy_pro.Properties.Settings.Default.last_memo_id;
+                last_id = last_id + 1;
 
-            dairy_pro.Properties.Settings.Default.last_memo_id = last_id;
-            dairy_pro.Properties.Settings.Default.Save();
+                dairy_pro.Properties.Settings.Default.last_memo_id = last_id;
+                dairy_pro.Properties.Settings.Default.Save();
 
-            string fn;
-            string fn_title;
-            string fn_date;
-            fn = Application.StartupPath + "\\data\\docs\\" + last_id.ToString() + ".rtf";
-            fn_title = Application.StartupPath + "\\data\\docs\\title_" + last_id.ToString() + ".txt";
-            fn_date = Application.StartupPath + "\\data\\docs\\date_" + last_id.ToString() + ".txt";
+                string fn;
+                string fn_title;
+                string fn_date;
+                fn = Application.StartupPath + "\\data\\docs\\" + last_id.ToString() + ".rtf";
+                fn_title = Application.StartupPath + "\\data\\docs\\title_" + last_id.ToString() + ".txt";
+                fn_date = Application.StartupPath + "\\data\\docs\\date_" + last_id.ToString() + ".txt";
             
-            System.IO.File.WriteAllText(fn_title, this.textBox1.Text, Encoding.UTF8);
-            System.IO.File.WriteAllText(fn_date, this.textBox2.Text, Encoding.UTF8);
+                System.IO.File.WriteAllText(fn_title, this.textBox1.Text, Encoding.UTF8);
+                System.IO.File.WriteAllText(fn_date, this.textBox2.Text, Encoding.UTF8);
 
-            this.richTextBox1.SaveFile(fn);
-            MessageBox.Show("Your Memo Saved!");
+                this.richTextBox1.SaveFile(fn);
+                MessageBox.Show("Your Memo Saved!");
+            }
+            catch (Exception ex)
+            {
+                comm_class.my_err_msg(ex.ToString());
+            } 
         }
 
         private void button3_Click(object sender, EventArgs e)
